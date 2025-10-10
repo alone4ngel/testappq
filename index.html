@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=375, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Сбой активации</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Helvetica Neue", sans-serif;
+            -webkit-font-smoothing: antialiased;
+            text-align: center;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        @media (prefers-color-scheme: dark) {
+            body {
+                background-color: #000000;
+                color: #FFFFFF;
+            }
+            .support {
+                color: #8E8E93;
+            }
+            .black-box {
+                background-color: #1C1C1E;
+                border: 1px solid rgba(84, 84, 88, 0.3);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+            .alert-item {
+                background-color: #2C2C2E; /* Темный фон для ячеек в темной теме */
+                border: 1px solid #3A3A3C; /* Темная граница */
+                color: #E5E5EA; /* Светлый текст для читаемости */
+            }
+        }
+        @media (prefers-color-scheme: light) {
+            body {
+                background-color: #FFFFFF;
+                color: #000000;
+            }
+            .support {
+                color: #6E6E73;
+            }
+            .black-box {
+                background-color: #F9F9F9;
+                border: 1px solid rgba(0, 0, 0, 0.1);
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.02);
+            }
+            .alert-item {
+                background-color: #F2F2F7; /* Светлый фон для ячеек в светлой теме */
+                border: 1px solid #D1D1D6; /* Светлая граница */
+                color: #000000; /* Темный текст для контраста */
+            }
+        }
+        .container {
+            max-width: 340px;
+            padding: 0 20px;
+        }
+        .warning {
+            margin-bottom: 30px;
+        }
+        .warning img {
+            width: 170px;
+            height: auto;
+        }
+        .title {
+            font-size: 34px;
+            font-weight: 600;
+            margin-right: 1px;
+        }
+        .message {
+            font-size: 17px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .support {
+            font-size: 15px;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+        .black-box {
+            width: 100%;
+            height: 200px;
+            margin: 0 auto 40px auto;
+            border-radius: 14px;
+            overflow-y: auto;
+            position: relative;
+            padding: 0;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+        .alert-item {
+            position: absolute;
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.8s ease-in-out, top 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 8px;
+            font-size: 15px;
+            display: flex;
+            align-items: center;
+            height: 40px;
+        }
+        .alert-item.active {
+            opacity: 1;
+        }
+        .alert-item .detected {
+            color: #FF3B30;
+            font-weight: 300;
+            font-size: 12px;
+            margin-left: 8px;
+        }
+        .alert-item::before {
+            content: '';
+            width: 16px;
+            height: 16px;
+            margin-right: 8px;
+            display: inline-block;
+            vertical-align: middle;
+            fill: #8E8E93;
+        }
+        .alert-item[data-text="Network Spoofing"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M15 7h3a5 5 0 0 1 5 5v0a5 5 0 0 1-5 5h-3m-6 0H6a5 5 0 0 1-5-5v0a5 5 0 0 1 5-5h3'/%3E%3Cline x1='8' y1='12' x2='16' y2='12'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="App Vulnerabilities"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Data Leakage"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='3' width='18' height='18' rx='2' ry='2'/%3E%3Cline x1='12' y1='8' x2='12' y2='16'/%3E%3Cline x1='8' y1='12' x2='16' y2='12'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Phishing Attacks"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cline x1='12' y1='8' x2='12' y2='12'/%3E%3Cline x1='12' y1='16' x2='12' y2='16'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Unauthorized Access"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cpath d='M7 11V7a5 5 0 0 1 10 0v4'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Suspicious Files"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z'/%3E%3Cpolyline points='13 2 13 9 20 9'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Outdated Software"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4l3 3'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Weak Passwords"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Crect x='3' y='11' width='18' height='11' rx='2' ry='2'/%3E%3Cline x1='7' y1='11' x2='7' y2='7'/%3E%3Cline x1='17' y1='11' x2='17' y2='7'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Unencrypted Wi-Fi"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.55a11 11 0 0 1 14.08 0'/%3E%3Cpath d='M1.42 9a16 16 0 0 1 21.16 0'/%3E%3Cpath d='M8.53 16.11a6 6 0 0 1 6.95 0'/%3E%3Cline x1='12' y1='20' x2='12' y2='20'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Malware & Spyware"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4'/%3E%3Cpath d='M12 16h.01'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Permission Abuse"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2'/%3E%3Ccircle cx='12' cy='7' r='4'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="DNS Hijacking"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v8'/%3E%3Cpath d='M8 12h8'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Email Breach"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z'/%3E%3Cpolyline points='22,6 12,13 2,6'/%3E%3C/svg%3E");
+        }
+        .alert-item[data-text="Tracking Cookies"]::before {
+            content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238E8E93' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='12' cy='12' r='10'/%3E%3Cpath d='M12 8v4l2 2'/%3E%3C/svg%3E");
+        }
+        .button {
+            display: block;
+            width: 100%;
+            margin: 60px auto 0 auto;
+            padding: 12px 0;
+            font-size: 17px;
+            font-weight: 600;
+            color: #FFFFFF;
+            background-color: #007AFF;
+            border-radius: 12px;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        .button:hover {
+            background-color: #005BB5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="warning">
+            <img src="https://cdn.discordapp.com/attachments/865499705634586656/1426143537480728606/ChatGPT_Image_10_._2025_._17_44_11.png?ex=68ea272b&is=68e8d5ab&hm=0d8d86f95de074db1a33b8962a9721ed3f238013bafeb6137d730b566f8c731d&" alt="Warning">
+        </div>
+        <div class="title">ATTENTION</div>
+        <div class="message">Your data is at risk. Device protection is required.</div>
+        <div class="support">More details at: apple.com/support.</div>
+        <div class="black-box" id="alertBox"></div>
+        <a href="https://telegra.ph/VMESTO-EHTOJ-SSLYKI-VSTAV-SVOYU-10-10" class="button">Protect iPhone</a>
+    </div>
+    <script>
+        const alerts = [
+            "Network Spoofing",
+            "App Vulnerabilities",
+            "Data Leakage",
+            "Phishing Attacks",
+            "Unauthorized Access",
+            "Suspicious Files",
+            "Outdated Software",
+            "Weak Passwords",
+            "Unencrypted Wi-Fi",
+            "Malware & Spyware",
+            "Permission Abuse",
+            "DNS Hijacking",
+            "Email Breach",
+            "Tracking Cookies"
+        ];
+        const alertBox = document.getElementById('alertBox');
+        let itemCount = 0;
+        function addAlert(text) {
+            const alertItem = document.createElement('div');
+            alertItem.className = 'alert-item';
+            alertItem.setAttribute('data-text', text);
+            alertItem.innerHTML = `${text} <span class="detected">DETECTED</span>`;
+            alertBox.insertBefore(alertItem, alertBox.firstChild);
+            const items = alertBox.getElementsByClassName('alert-item');
+            for (let i = 0; i < items.length; i++) {
+                items[i].style.top = `${i * 43}px`;
+                if (i === 0) {
+                    setTimeout(() => {
+                        alertItem.classList.add('active');
+                    }, 50);
+                }
+            }
+            itemCount++;
+        }
+        let index = 0;
+        function showNextAlert() {
+            if (index < alerts.length) {
+                addAlert(alerts[index]);
+                index++;
+                setTimeout(showNextAlert, 1000);
+            }
+        }
+        showNextAlert();
+    </script>
+</body>
+</html>
