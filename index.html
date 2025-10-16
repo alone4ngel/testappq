@@ -22,11 +22,13 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
       background: #000;
       color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      width: 100vw;
+      overflow-x: hidden;
+      min-height: 100vh;
+      width: 100%;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      padding: 0;
+      margin: 0;
     }
 
     /* ====== HEADER ====== */
@@ -44,6 +46,8 @@
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
       z-index: 10;
+      width: 100%;
+      padding: 0 12px;
     }
 
     .header-title {
@@ -51,11 +55,10 @@
       font-weight: 600;
       text-align: center;
       color: #fff;
+      flex: 1;
     }
 
     .header-button {
-      position: absolute;
-      left: 12px;
       display: flex;
       align-items: center;
       gap: 4px;
@@ -64,6 +67,8 @@
       text-decoration: none;
       font-weight: 400;
       height: 100%;
+      position: absolute;
+      left: 12px;
     }
 
     .header-button svg {
@@ -79,37 +84,37 @@
 
     /* ====== CONTAINER ====== */
     .container {
+      width: 100%;
       max-width: 430px;
       margin: 0 auto;
-      padding: 60px 12px 16px; /* Увеличил верхний отступ с 44px до 60px */
-      height: 100vh;
+      padding: 44px 12px 20px;
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
 
     .content {
       flex: 1;
       display: flex;
       flex-direction: column;
-      overflow-y: auto;
-      padding-bottom: 8px;
+      width: 100%;
     }
 
     .logo-card {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px; /* Увеличил радиус */
-      padding: 24px 16px; /* Увеличил отступы */
+      border-radius: 14px;
+      padding: 20px 16px;
       text-align: center;
-      margin-bottom: 10px; /* Увеличил отступ снизу */
+      margin-bottom: 8px;
+      width: 100%;
     }
 
     .logo {
-      width: 80px; /* Увеличил логотип */
-      height: 80px;
-      margin: 0 auto 12px; /* Увеличил отступ снизу */
-      border-radius: 16px; /* Увеличил радиус */
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 10px;
+      border-radius: 14px;
       overflow: hidden;
     }
 
@@ -120,14 +125,16 @@
     }
 
     .title {
-      font-size: 22px; /* Увеличил шрифт */
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 4px; /* Увеличил отступ */
+      margin-bottom: 4px;
+      word-wrap: break-word;
     }
 
     .subtitle {
-      font-size: 15px; /* Увеличил шрифт */
+      font-size: 14px;
       color: #8e8e93;
+      word-wrap: break-word;
     }
 
     /* ====== SECTIONS ====== */
@@ -136,15 +143,17 @@
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       overflow: hidden;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      width: 100%;
     }
 
     .item {
       display: flex;
       align-items: center;
-      padding: 8px 12px;
+      padding: 10px 12px;
       gap: 10px;
-      min-height: 40px;
+      min-height: 44px;
+      width: 100%;
     }
 
     .item:active {
@@ -154,6 +163,7 @@
     .divider {
       height: 0.5px;
       background: rgba(255, 255, 255, 0.08);
+      width: 100%;
     }
 
     .compromised {
@@ -164,14 +174,9 @@
       background: rgba(139, 0, 0, 0.35);
     }
 
-    .divider-compromised {
-      height: 0.5px;
-      background: rgba(255, 69, 58, 0.15);
-    }
-
     .icon {
-      width: 20px;
-      height: 20px;
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
     }
 
@@ -189,13 +194,17 @@
 
     .label {
       flex: 1;
-      font-size: 14px;
+      font-size: 15px;
       text-align: left;
+      word-wrap: break-word;
+      min-width: 0;
     }
 
     .value {
-      font-size: 14px;
+      font-size: 15px;
       color: #8e8e93;
+      flex-shrink: 0;
+      word-wrap: break-word;
     }
 
     .compromised .label,
@@ -211,9 +220,9 @@
       color: #fff;
       font-size: 16px;
       font-weight: 600;
-      padding: 12px;
+      padding: 14px;
       width: 100%;
-      margin-top: 6px;
+      margin-top: 8px;
       cursor: pointer;
       transition: background 0.2s;
       text-align: center;
@@ -260,10 +269,6 @@
         background: rgba(0, 0, 0, 0.08);
       }
 
-      .divider-compromised {
-        background: rgba(255, 59, 48, 0.1);
-      }
-
       .compromised {
         background: rgba(255, 59, 48, 0.08);
       }
@@ -273,13 +278,52 @@
       }
     }
 
+    /* ====== MOBILE OPTIMIZATIONS ====== */
+    @media (max-width: 430px) {
+      .container {
+        padding: 44px 8px 20px;
+      }
+      
+      .logo-card {
+        padding: 18px 12px;
+      }
+      
+      .item {
+        padding: 10px 12px;
+      }
+      
+      .label, .value {
+        font-size: 14px;
+      }
+    }
+
+    @media (max-width: 375px) {
+      .container {
+        padding: 44px 6px 20px;
+      }
+      
+      .logo {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .title {
+        font-size: 18px;
+      }
+      
+      .subtitle {
+        font-size: 13px;
+      }
+    }
+
     @supports (-webkit-touch-callout: none) {
       body {
         height: -webkit-fill-available;
       }
       
       .container {
-        height: -webkit-fill-available;
+        min-height: -webkit-fill-available;
+        padding-bottom: calc(20px + env(safe-area-inset-bottom));
       }
     }
   </style>
@@ -318,20 +362,20 @@
         <div class="item"><div class="label">Subscriptions</div></div>
       </div>
 
-      <!-- Compromised -->
+      <!-- Compromised Services -->
       <div class="section">
         <div class="item compromised">
           <div class="icon"><img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/icloud-1760615999088.svg" alt="iCloud"></div>
           <div class="label">iCloud</div>
           <div class="value">Compromised</div>
         </div>
-        <div class="divider-compromised"></div>
+        <div class="divider"></div>
         <div class="item compromised">
           <div class="icon"><img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/appstore-1760616001843.svg" alt="App Store"></div>
           <div class="label">Media & Purchases</div>
           <div class="value">Compromised</div>
         </div>
-        <div class="divider-compromised"></div>
+        <div class="divider"></div>
         <div class="item compromised">
           <div class="icon"><img src="https://slelguoygbfzlpylpxfs.supabase.co/storage/v1/object/public/document-uploads/locator-1760616003709.svg" alt="Find My"></div>
           <div class="label">Find My</div>
