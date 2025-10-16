@@ -22,9 +22,8 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
       background: #000;
       color: #fff;
-      overflow-x: hidden;
-      overflow-y: auto;
-      min-height: 100vh;
+      overflow: hidden;
+      height: 100vh;
       width: 100vw;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
@@ -36,7 +35,7 @@
       top: 0;
       left: 0;
       right: 0;
-      height: 48px;
+      height: 44px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -48,7 +47,7 @@
     }
 
     .header-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       text-align: center;
       color: #fff;
@@ -56,27 +55,22 @@
 
     .header-button {
       position: absolute;
-      left: 16px;
+      left: 12px;
       display: flex;
       align-items: center;
-      gap: 1px;
+      gap: 4px;
       color: #0a84ff;
-      font-size: 17px;
+      font-size: 16px;
       text-decoration: none;
       font-weight: 400;
       height: 100%;
     }
 
     .header-button svg {
-      width: 18px;
-      height: 18px;
+      width: 16px;
+      height: 16px;
       display: block;
       flex-shrink: 0;
-    }
-
-    .header-button-text {
-      line-height: 18px;
-      margin-top: -3px;
     }
 
     .header-button:active {
@@ -87,27 +81,35 @@
     .container {
       max-width: 430px;
       margin: 0 auto;
-      padding: 60px 16px 30px;
-      min-height: 100vh;
+      padding: 44px 12px 20px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+    }
+
+    .content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      overflow-y: auto;
+      padding-bottom: 10px;
     }
 
     .logo-card {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 20px 16px;
+      border-radius: 12px;
+      padding: 16px;
       text-align: center;
-      margin-bottom: 12px;
-      flex-shrink: 0;
+      margin-bottom: 8px;
     }
 
     .logo {
-      width: 72px;
-      height: 72px;
-      margin: 0 auto 12px;
-      border-radius: 16px;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 8px;
+      border-radius: 14px;
       overflow: hidden;
     }
 
@@ -118,14 +120,13 @@
     }
 
     .title {
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 600;
-      margin-bottom: 4px;
-      letter-spacing: -0.3px;
+      margin-bottom: 2px;
     }
 
     .subtitle {
-      font-size: 15px;
+      font-size: 13px;
       color: #8e8e93;
     }
 
@@ -133,18 +134,17 @@
     .section {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
+      border-radius: 12px;
       overflow: hidden;
-      margin-bottom: 12px;
-      flex-shrink: 0;
+      margin-bottom: 8px;
     }
 
     .item {
       display: flex;
       align-items: center;
-      padding: 12px 16px;
-      gap: 12px;
-      transition: background 0.2s;
+      padding: 10px 12px;
+      gap: 10px;
+      min-height: 44px;
     }
 
     .item:active {
@@ -170,8 +170,8 @@
     }
 
     .icon {
-      width: 24px;
-      height: 24px;
+      width: 22px;
+      height: 22px;
       flex-shrink: 0;
     }
 
@@ -189,12 +189,12 @@
 
     .label {
       flex: 1;
-      font-size: 16px;
+      font-size: 15px;
       text-align: left;
     }
 
     .value {
-      font-size: 16px;
+      font-size: 15px;
       color: #8e8e93;
     }
 
@@ -207,32 +207,23 @@
     .repair-button {
       background: #ff3b30;
       border: none;
-      border-radius: 12px;
+      border-radius: 10px;
       color: #fff;
-      font-size: 17px;
+      font-size: 16px;
       font-weight: 600;
-      padding: 16px;
+      padding: 14px;
       width: 100%;
-      margin-top: auto;
-      margin-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+      margin-top: 8px;
       cursor: pointer;
       transition: background 0.2s;
-      flex-shrink: 0;
       text-align: center;
       text-decoration: none;
       display: block;
+      flex-shrink: 0;
     }
 
     .repair-button:active {
       background: #ff2d20;
-    }
-
-    /* ====== CONTENT WRAPPER ====== */
-    .content-wrapper {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      padding-bottom: 20px;
     }
 
     /* ====== LIGHT MODE ====== */
@@ -288,7 +279,7 @@
       }
       
       .container {
-        min-height: -webkit-fill-available;
+        height: -webkit-fill-available;
       }
     }
   </style>
@@ -297,16 +288,16 @@
   <!-- Header -->
   <div class="header">
     <a href="#" class="header-button">
-      <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.4132 4.04922L6.01738 8.34896C5.85917 8.50151 5.78572 8.67101 5.78572 8.86877C5.78572 9.06652 5.86482 9.24732 6.01738 9.39423L10.4132 13.6883C10.5431 13.8126 10.6957 13.8804 10.8821 13.8804C11.2607 13.8804 11.5545 13.5866 11.5545 13.2137C11.5545 13.0329 11.481 12.8577 11.3511 12.7278L7.39035 8.87442L11.3511 5.00974C11.481 4.87979 11.5545 4.71028 11.5545 4.52383C11.5545 4.15092 11.2607 3.85712 10.8821 3.85712C10.7013 3.85712 10.5431 3.92492 10.4132 4.04922Z" fill="currentColor"/>
       </svg>
-      <span class="header-button-text">Settings</span>
+      Settings
     </a>
     <div class="header-title">AppleCare+</div>
   </div>
 
   <div class="container">
-    <div class="content-wrapper">
+    <div class="content">
       <!-- Logo -->
       <div class="logo-card">
         <div class="logo">
