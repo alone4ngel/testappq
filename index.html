@@ -7,7 +7,6 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <title>AppleCare+</title>
   <style>
-    
     /* ====== GLOBAL ====== */
     * {
       margin: 0;
@@ -18,27 +17,27 @@
       -webkit-user-select: none;
     }
 
-/* Добавьте это в CSS секцию для логотипа */
-.logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Для четкого заполнения */
-  object-position: center;
-  display: block;
-}
+    /* Добавьте это в CSS секцию для логотипа */
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover; /* Для четкого заполнения */
+      object-position: center;
+      display: block;
+    }
 
-/* Исправление для белого фона логотипа */
-.logo {
-  background: #fff !important;
-  border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
-}
+    /* Исправление для белого фона логотипа */
+    .logo {
+      background: #fff !important;
+      border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
+    }
 
-/* Для темной темы - все равно белый фон */
-@media (prefers-color-scheme: dark) {
-  .logo {
-    background: #fff !important;
-  }
-}
+    /* Для темной темы - все равно белый фон */
+    @media (prefers-color-scheme: dark) {
+      .logo {
+        background: #fff !important;
+      }
+    }
     
     html, body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
@@ -55,7 +54,6 @@
       right: 0;
       bottom: 0;
     }
-
 
     /* ====== HEADER ====== */
     .header {
@@ -250,7 +248,7 @@
       font-weight: 600;
       padding: 16px;
       width: 100%;
-      margin-top: auto; /* Кнопка всегда внизу */
+      margin-top: 10px; /* Изменено с auto на 10px для поднятия кнопки */
       cursor: pointer;
       transition: background 0.2s;
       text-align: center;
@@ -651,9 +649,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
