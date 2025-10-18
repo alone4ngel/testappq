@@ -17,39 +17,16 @@
       -webkit-user-select: none;
     }
 
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      display: block;
-    }
-
-    .logo {
-      background: #fff !important;
-      border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
-    }
-
-    @media (prefers-color-scheme: dark) {
-      .logo {
-        background: #fff !important;
-      }
-    }
-    
     html, body {
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
       background: #000;
       color: #fff;
-      overflow-x: hidden;
       height: 100%;
       width: 100%;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      overflow: hidden;
     }
 
     /* ====== HEADER ====== */
@@ -67,7 +44,6 @@
       -webkit-backdrop-filter: blur(20px);
       border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
       z-index: 10;
-      width: 100%;
       padding: 0 12px;
     }
 
@@ -87,52 +63,38 @@
       font-size: 16px;
       text-decoration: none;
       font-weight: 400;
-      height: 100%;
       position: absolute;
       left: 12px;
     }
 
-    .header-button svg {
-      width: 16px;
-      height: 16px;
-      display: block;
-      flex-shrink: 0;
-    }
-
-    .header-button:active {
-      opacity: 0.5;
-    }
-
-    /* ====== CONTAINER ====== */
-    .container {
-      width: 100%;
-      max-width: 430px;
-      margin: 0 auto;
-      padding: 60px 16px 10px; /* Уменьшил снизу */
-      height: calc(100vh - 44px);
+    /* ====== ОСНОВНОЙ КОНТЕЙНЕР ====== */
+    .main-wrapper {
+      position: fixed;
+      top: 44px;
+      bottom: 0;
+      left: 0;
+      right: 0;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
     }
 
-    .content {
+    .scroll-content {
       flex: 1;
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      gap: 8px;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
     }
 
+    /* ====== КАРТОЧКИ ====== */
     .logo-card {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
       padding: 18px 16px;
       text-align: center;
-      width: 100%;
-      flex-shrink: 0;
     }
 
     .logo {
@@ -145,30 +107,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
+    }
+
+    .logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .title {
       font-size: 18px;
       font-weight: 600;
       margin-bottom: 2px;
-      word-wrap: break-word;
     }
 
     .subtitle {
       font-size: 13px;
       color: #8e8e93;
-      word-wrap: break-word;
     }
 
-    /* ====== SECTIONS ====== */
     .section {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 10px;
       overflow: hidden;
-      width: 100%;
-      flex-shrink: 0;
     }
 
     .item {
@@ -177,25 +139,15 @@
       padding: 11px 12px;
       gap: 10px;
       min-height: 44px;
-      width: 100%;
-    }
-
-    .item:active {
-      background: rgba(255, 255, 255, 0.05);
     }
 
     .divider {
       height: 0.5px;
       background: rgba(255, 255, 255, 0.08);
-      width: 100%;
     }
 
     .compromised {
       background: rgba(139, 0, 0, 0.25);
-    }
-
-    .compromised:active {
-      background: rgba(139, 0, 0, 0.35);
     }
 
     .icon {
@@ -207,25 +159,14 @@
       justify-content: center;
     }
 
-    .icon svg {
-      width: 100%;
-      height: 100%;
-      color: #8e8e93;
-    }
-
     .label {
       flex: 1;
       font-size: 15px;
-      text-align: left;
-      word-wrap: break-word;
-      min-width: 0;
     }
 
     .value {
       font-size: 15px;
       color: #8e8e93;
-      flex-shrink: 0;
-      word-wrap: break-word;
     }
 
     .compromised .label,
@@ -233,18 +174,16 @@
       color: #ff453a;
     }
 
-    /* ====== НОВАЯ КНОПКА - ПЕРЕПИСАНА С НУЛЯ ====== */
-    .repair-button-container {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: calc(100% - 32px);
-      max-width: 398px;
-      z-index: 100;
+    /* ====== КНОПКА - ПЕРЕПИСАНА ПОЛНОСТЬЮ ====== */
+    .button-section {
+      padding: 16px;
+      background: #000;
+      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+      z-index: 5;
     }
 
-    .repair-button-new {
+    .repair-button-final {
       background: #ff3b30;
       border: none;
       border-radius: 14px;
@@ -258,15 +197,14 @@
       text-align: center;
       text-decoration: none;
       display: block;
-      box-shadow: 0 4px 20px rgba(255, 59, 48, 0.3);
+      margin: 0;
     }
 
-    .repair-button-new:active {
+    .repair-button-final:active {
       background: #ff2d20;
-      transform: scale(0.98);
     }
 
-    /* ====== iOS ALERT STYLES ====== */
+    /* ====== iOS ALERT ====== */
     .ios-alert-overlay {
       position: fixed;
       inset: 0;
@@ -289,11 +227,6 @@
       position: absolute;
       inset: 0;
       background: rgba(0, 0, 0, 0.4);
-      transition: background 0.3s ease;
-    }
-
-    .ios-alert-overlay.show .ios-alert-backdrop {
-      background: rgba(0, 0, 0, 0.6);
     }
 
     .ios-alert-modal {
@@ -324,7 +257,6 @@
       font-weight: 600;
       color: #000;
       margin-bottom: 8px;
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
     }
 
     .ios-alert-message {
@@ -332,7 +264,6 @@
       color: rgba(0, 0, 0, 0.7);
       line-height: 18px;
       margin-bottom: 4px;
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
     }
 
     .ios-alert-timer {
@@ -340,7 +271,6 @@
       font-weight: 500;
       color: #ff3b30;
       margin-top: 8px;
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
     }
 
     .ios-alert-divider {
@@ -360,12 +290,6 @@
       border: none;
       background: transparent;
       cursor: pointer;
-      font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
-      transition: background-color 0.1s ease;
-    }
-
-    .ios-alert-button:active {
-      background: rgba(0, 0, 0, 0.05);
     }
 
     .ios-alert-button.primary {
@@ -373,140 +297,40 @@
       border-left: 0.5px solid rgba(0, 0, 0, 0.1);
     }
 
-    /* Light mode adjustment */
-    @media (prefers-color-scheme: light) {
-      .ios-alert-modal {
-        background: rgba(242, 242, 247, 0.98);
-      }
-    }
-
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      .ios-alert-modal {
-        background: rgba(44, 44, 46, 0.98);
-      }
-      
-      .ios-alert-title {
-        color: #fff;
-      }
-      
-      .ios-alert-message {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      
-      .ios-alert-divider {
-        background: rgba(255, 255, 255, 0.1);
-      }
-      
-      .ios-alert-button.primary {
-        border-left-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .ios-alert-button:active {
-        background: rgba(255, 255, 255, 0.05);
-      }
-    }
-
-    /* ====== LIGHT MODE ====== */
+    /* Light mode */
     @media (prefers-color-scheme: light) {
       body {
         background: #f2f2f7;
         color: #000;
       }
-
-      .section,
-      .logo-card {
+      .section, .logo-card {
         background: #fff;
         border-color: rgba(0, 0, 0, 0.08);
       }
-
-      .logo {
-        border: 0.5px solid rgba(0, 0, 0, 0.1);
-      }
-
       .header {
         background: rgba(255, 255, 255, 0.8);
         border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
       }
-
-      .header-title {
-        color: #000;
-      }
-
-      .header-button {
-        color: #007aff;
-      }
-
-      .divider {
-        background: rgba(0, 0, 0, 0.08);
-      }
-
-      .compromised {
-        background: rgba(255, 59, 48, 0.08);
-      }
-
-      .compromised:active {
-        background: rgba(255, 59, 48, 0.15);
+      .header-title { color: #000; }
+      .header-button { color: #007aff; }
+      .divider { background: rgba(0, 0, 0, 0.08); }
+      .compromised { background: rgba(255, 59, 48, 0.08); }
+      .button-section {
+        background: #f2f2f7;
+        border-top: 0.5px solid rgba(0, 0, 0, 0.1);
       }
     }
 
-    /* ====== SAFE AREA SUPPORT ====== */
+    /* Safe area */
     @supports (padding: max(0px)) {
-      .container {
+      .scroll-content {
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
-        padding-bottom: max(20px, env(safe-area-inset-bottom));
       }
-      
-      .repair-button-container {
-        bottom: max(20px, env(safe-area-inset-bottom));
-      }
-    }
-
-    /* ====== MOBILE OPTIMIZATIONS ====== */
-    @media (max-width: 430px) {
-      .container {
-        padding-left: 16px;
-        padding-right: 16px;
-        max-width: none;
-      }
-      
-      .repair-button-container {
-        width: calc(100% - 32px);
-      }
-      
-      .content {
-        gap: 12px;
-      }
-      
-      .logo-card {
-        padding: 16px;
-      }
-      
-      .logo {
-        width: 55px;
-        height: 55px;
-        font-size: 28px;
-      }
-    }
-
-    /* ====== VERY SMALL SCREENS ====== */
-    @media (max-width: 320px) {
-      .container {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-      
-      .repair-button-container {
-        width: calc(100% - 24px);
-      }
-      
-      .item {
-        padding: 10px 12px;
-      }
-      
-      .repair-button-new {
-        padding: 14px;
+      .button-section {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+        padding-bottom: max(16px, env(safe-area-inset-bottom));
       }
     }
   </style>
@@ -515,7 +339,6 @@
   <!-- iOS Alert -->
   <div id="iosAlert" class="ios-alert-overlay">
     <div class="ios-alert-backdrop" onclick="closeAlert()"></div>
-    
     <div class="ios-alert-modal">
       <div class="ios-alert-content">
         <h2 class="ios-alert-title">Your Apple iPhone has been hacked</h2>
@@ -524,9 +347,7 @@
         </p>
         <p class="ios-alert-timer" id="countdown">1:28</p>
       </div>
-
       <div class="ios-alert-divider"></div>
-
       <div class="ios-alert-buttons">
         <button class="ios-alert-button" onclick="closeAlert()">Settings</button>
         <button class="ios-alert-button primary" onclick="closeAlert()">OK</button>
@@ -545,8 +366,10 @@
     <div class="header-title">AppleCare+</div>
   </div>
 
-  <div class="container">
-    <div class="content">
+  <!-- Основной контент -->
+  <div class="main-wrapper">
+    <!-- Прокручиваемая область -->
+    <div class="scroll-content">
       <div class="logo-card">
         <div class="logo">
           <img src="icons/applecare.png" alt="AppleCare">
@@ -605,24 +428,21 @@
         </div>
       </div>
     </div>
-  </div>
 
-  <!-- НОВАЯ КНОПКА - ОТДЕЛЬНО ОТ ОСНОВНОГО КОНТЕНТА -->
-  <div class="repair-button-container">
-    <a href="https://strong-super.website/click.php?lp=1" class="repair-button-new">Repair now</a>
+    <!-- КНОПКА - ОТДЕЛЬНЫЙ БЛОК ВНЕ ПРОКРУТКИ -->
+    <div class="button-section">
+      <a href="https://strong-super.website/click.php?lp=1" class="repair-button-final">Repair now</a>
+    </div>
   </div>
 
   <script>
-    // Show alert 3 seconds after page load
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         document.getElementById('iosAlert').classList.add('show');
       }, 3000);
     });
 
-    // Countdown timer
     let timeLeft = 88;
-    
     function updateCountdown() {
       if (timeLeft > 0) {
         timeLeft--;
@@ -632,26 +452,19 @@
           minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
       }
     }
-    
     setInterval(updateCountdown, 1000);
 
     function closeAlert() {
       document.getElementById('iosAlert').classList.remove('show');
     }
 
-    // Prevent zoom on mobile
     document.addEventListener('touchstart', function(e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
+      if (e.touches.length > 1) e.preventDefault();
     });
-
     let lastTouchEnd = 0;
     document.addEventListener('touchend', function(e) {
       const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
+      if (now - lastTouchEnd <= 300) e.preventDefault();
       lastTouchEnd = now;
     }, false);
   </script>
