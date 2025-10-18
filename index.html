@@ -82,7 +82,7 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 16px 16px 8px; /* Уменьшил нижний padding */
+      padding: 16px 16px 8px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -196,7 +196,7 @@
       text-decoration: none;
       display: block;
       margin: 0;
-      margin-top: 4px; /* Минимальный отступ от последней карточки */
+      margin-top: 4px;
     }
 
     .repair-button-final:active {
@@ -369,6 +369,7 @@
         <div class="subtitle">Protection System</div>
       </div>
 
+      <!-- Первая секция - основные данные -->
       <div class="section">
         <div class="item"><div class="label">Name, Phone Numbers, Email</div></div>
         <div class="divider"></div>
@@ -379,10 +380,11 @@
         <div class="item"><div class="label">Subscriptions</div></div>
       </div>
 
+      <!-- Вторая секция - скомпрометированные сервисы -->
       <div class="section">
         <div class="item compromised">
           <div class="icon">
-            <img src="icons/icloud.svg" alt="icloud">
+            <img src="icons/icloud.svg" alt="iCloud">
           </div>
           <div class="label">iCloud</div>
           <div class="value">Compromised</div>
@@ -398,17 +400,17 @@
         <div class="divider"></div>
         <div class="item compromised">
           <div class="icon">
-            <img src="icons/locator.svg" alt="AppleCare">
+            <img src="icons/locator.svg" alt="Find My">
           </div>
           <div class="label">Find My</div>
           <div class="value">Compromised</div>
         </div>
       </div>
 
+      <!-- Третья секция - информация об устройстве -->
       <div class="section">
         <div class="item">
           <div class="icon">
-            <!-- SVG ТЕЛЕФОНЧИКА -->
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
               <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
               <path d="M12 18h.01"/>
