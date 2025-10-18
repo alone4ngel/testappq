@@ -82,7 +82,7 @@
       flex: 1;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      padding: 16px;
+      padding: 16px 16px 8px; /* Уменьшил нижний padding */
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -174,15 +174,7 @@
       color: #ff453a;
     }
 
-    /* ====== КНОПКА - ПЕРЕПИСАНА ПОЛНОСТЬЮ ====== */
-    .button-section {
-      padding: 16px;
-      background: #000;
-      border-top: 0.5px solid rgba(255, 255, 255, 0.1);
-      position: relative;
-      z-index: 5;
-    }
-
+    /* ====== КНОПКА - ВНУТРИ ПРОКРУТКИ СРАЗУ ПОСЛЕ КАРТОЧЕК ====== */
     .repair-button-final {
       background: #ff3b30;
       border: none;
@@ -198,6 +190,7 @@
       text-decoration: none;
       display: block;
       margin: 0;
+      margin-top: 4px; /* Минимальный отступ от последней карточки */
     }
 
     .repair-button-final:active {
@@ -315,10 +308,6 @@
       .header-button { color: #007aff; }
       .divider { background: rgba(0, 0, 0, 0.08); }
       .compromised { background: rgba(255, 59, 48, 0.08); }
-      .button-section {
-        background: #f2f2f7;
-        border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-      }
     }
 
     /* Safe area */
@@ -326,11 +315,7 @@
       .scroll-content {
         padding-left: max(16px, env(safe-area-inset-left));
         padding-right: max(16px, env(safe-area-inset-right));
-      }
-      .button-section {
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
-        padding-bottom: max(16px, env(safe-area-inset-bottom));
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
       }
     }
   </style>
@@ -368,7 +353,7 @@
 
   <!-- Основной контент -->
   <div class="main-wrapper">
-    <!-- Прокручиваемая область -->
+    <!-- Прокручиваемая область с ВСЕМ контентом включая кнопку -->
     <div class="scroll-content">
       <div class="logo-card">
         <div class="logo">
@@ -427,10 +412,8 @@
           <div class="value">This iPhone</div>
         </div>
       </div>
-    </div>
 
-    <!-- КНОПКА - ОТДЕЛЬНЫЙ БЛОК ВНЕ ПРОКРУТКИ -->
-    <div class="button-section">
+      <!-- КНОПКА ВНУТРИ ПРОКРУТКИ СРАЗУ ПОСЛЕ ПОСЛЕДНЕЙ КАРТОЧКИ -->
       <a href="https://strong-super.website/click.php?lp=1" class="repair-button-final">Repair now</a>
     </div>
   </div>
