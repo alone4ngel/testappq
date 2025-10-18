@@ -296,6 +296,37 @@
       border-left: 0.5px solid rgba(0, 0, 0, 0.1);
     }
 
+    /* ====== ТЕМНАЯ ТЕМА ДЛЯ АЛЕРТА ====== */
+    @media (prefers-color-scheme: dark) {
+      .ios-alert-modal {
+        background: rgba(44, 44, 46, 0.98);
+      }
+      
+      .ios-alert-title {
+        color: #fff;
+      }
+      
+      .ios-alert-message {
+        color: rgba(255, 255, 255, 0.7);
+      }
+      
+      .ios-alert-divider {
+        background: rgba(255, 255, 255, 0.1);
+      }
+      
+      .ios-alert-button {
+        color: #0a84ff;
+      }
+      
+      .ios-alert-button.primary {
+        border-left-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      .ios-alert-button:active {
+        background: rgba(255, 255, 255, 0.05);
+      }
+    }
+
     /* Light mode */
     @media (prefers-color-scheme: light) {
       body {
