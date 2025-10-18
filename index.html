@@ -21,12 +21,12 @@
       font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
       background: #000;
       color: #fff;
-      overflow-x: hidden;
+      overflow: hidden; /* ЗАПРЕТ СКРОЛЛА */
       height: 100%;
       width: 100%;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      position: fixed; /* Предотвращает скроллинг */
+      position: fixed; /* ЗАПРЕТ СКРОЛЛА */
       top: 0;
       left: 0;
       right: 0;
@@ -89,12 +89,12 @@
       width: 100%;
       max-width: 430px;
       margin: 0 auto;
-      padding: 60px 16px 20px; /* Увеличил нижний padding */
-      height: calc(100vh - 44px);
+      padding: 60px 16px 20px;
+      height: 100vh;
       display: flex;
       flex-direction: column;
-      gap: 15px;
-      overflow: hidden;
+      gap: 8px; /* Уменьшил отступы */
+      overflow: hidden; /* ЗАПРЕТ СКРОЛЛА */
     }
 
     .content {
@@ -102,44 +102,41 @@
       display: flex;
       flex-direction: column;
       width: 100%;
-      gap: 10px;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding-bottom: 10px;
+      gap: 6px; /* Уменьшил отступы */
+      overflow: hidden; /* ЗАПРЕТ СКРОЛЛА */
     }
 
     .logo-card {
       background: #1c1c1e;
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: 14px;
-      padding: 18px 16px;
+      padding: 14px 16px; /* Уменьшил padding */
       text-align: center;
       width: 100%;
-      flex-shrink: 0;
     }
 
     .logo {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 8px;
+      width: 55px;
+      height: 55px;
+      margin: 0 auto 6px;
       border-radius: 14px;
       overflow: hidden;
       background: #fff;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 30px;
+      font-size: 28px;
     }
 
     .title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 600;
       margin-bottom: 2px;
       word-wrap: break-word;
     }
 
     .subtitle {
-      font-size: 13px;
+      font-size: 12px;
       color: #8e8e93;
       word-wrap: break-word;
     }
@@ -151,15 +148,15 @@
       border-radius: 10px;
       overflow: hidden;
       width: 100%;
-      flex-shrink: 0;
+      margin-bottom: 2px; /* Уменьшил отступ снизу */
     }
 
     .item {
       display: flex;
       align-items: center;
-      padding: 11px 12px;
+      padding: 10px 12px; /* Уменьшил padding */
       gap: 10px;
-      min-height: 44px;
+      min-height: 42px; /* Уменьшил высоту */
       width: 100%;
     }
 
@@ -224,15 +221,14 @@
       color: #fff;
       font-size: 16px;
       font-weight: 600;
-      padding: 16px;
+      padding: 14px; /* Уменьшил padding */
       width: 100%;
-      margin-top: 1px; /* Кнопка всегда внизу */
+      margin-top: 0; /* УБРАЛ ОТСТУП СВЕРХУ - кнопка будет прямо под контентом */
       cursor: pointer;
       transition: background 0.2s;
       text-align: center;
       text-decoration: none;
       display: block;
-      flex-shrink: 0;
     }
 
     .repair-button:active {
@@ -431,45 +427,6 @@
         padding-bottom: max(20px, env(safe-area-inset-bottom));
       }
     }
-
-    /* ====== MOBILE OPTIMIZATIONS ====== */
-    @media (max-width: 430px) {
-      .container {
-        padding-left: 16px;
-        padding-right: 16px;
-        max-width: none;
-      }
-      
-      .content {
-        gap: 12px;
-      }
-      
-      .logo-card {
-        padding: 16px;
-      }
-      
-      .logo {
-        width: 55px;
-        height: 55px;
-        font-size: 28px;
-      }
-    }
-
-    /* ====== VERY SMALL SCREENS ====== */
-    @media (max-width: 320px) {
-      .container {
-        padding-left: 12px;
-        padding-right: 12px;
-      }
-      
-      .item {
-        padding: 10px 12px;
-      }
-      
-      .repair-button {
-        padding: 14px;
-      }
-    }
   </style>
 </head>
 <body>
@@ -589,11 +546,11 @@
     window.addEventListener('DOMContentLoaded', function() {
       setTimeout(function() {
         document.getElementById('iosAlert').classList.add('show');
-      }, 3000); // 3 seconds delay
+      }, 3000);
     });
 
     // Countdown timer
-    let timeLeft = 88; // 1:28 in seconds
+    let timeLeft = 88;
     
     function updateCountdown() {
       if (timeLeft > 0) {
@@ -612,24 +569,14 @@
       document.getElementById('iosAlert').classList.remove('show');
     }
 
-    // Prevent zoom on mobile
-    document.addEventListener('touchstart', function(e) {
-      if (e.touches.length > 1) {
-        e.preventDefault();
-      }
-    });
+    // Запрет скролла
+    document.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+    }, { passive: false });
 
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(e) {
-      const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) {
-        e.preventDefault();
-      }
-      lastTouchEnd = now;
-    }, false);
+    document.addEventListener('wheel', function(e) {
+      e.preventDefault();
+    }, { passive: false });
   </script>
 </body>
 </html>
-
-
-
